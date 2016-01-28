@@ -1,12 +1,14 @@
+include config.mk
+
 # Generate archive file.
-analysis.tar.gz : *.dat wordcount.py
+analysis.tar.gz : *.dat $(COUNT_SRC)
 	tar -czf $@ $^
 
 # Count words.
 .PHONY : dats
-dats : isles.dat abyss.dat
+dats : isles.dat abyss.dat last.dat
 
-%.dat : books/%.txt wordcount.py
+%.dat : books/%.txt $(COUNT_SRC)
 	python wordcount.py $< $*.dat
 
 
