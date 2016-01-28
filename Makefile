@@ -6,14 +6,8 @@ analysis.tar.gz : *.dat wordcount.py
 .PHONY : dats
 dats : isles.dat abyss.dat
 
-isles.dat : books/isles.txt wordcount.py
-	python wordcount.py $< $@
-
-abyss.dat : books/abyss.txt wordcount.py
-	python wordcount.py $< $@
-
-last.dat : books/last.txt wordcount.py
-	python wordcount.py $< $@
+%.dat : books/%.txt wordcount.py
+	python wordcount.py $< $*.dat
 
 
 .PHONY : clean
